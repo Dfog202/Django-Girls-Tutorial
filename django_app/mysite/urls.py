@@ -23,5 +23,6 @@ urlpatterns = [
     # /post/<pk>/
     # /post/로 시작하고 중간에 숫자 1개 이상을 가지고, /로 끝나는 정규표현식
     url(r'^post/(?P<pk>\d+)/$', views.post_detail, name='post_detail'),
+    url(r'^post/(?P<pk>\d+)/modify/$', views.post_modify, name='post_modify'),
     url(r'^post/create/$', views.post_create, name='post_create'),
 ]
