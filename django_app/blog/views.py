@@ -1,13 +1,20 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.utils import timezone
+from django.contrib.auth import get_user_model
+
 from .models import Post
+
+User = get_user_model()
 
 
 def post_list(request):
     # return HttpResponse('<html><body>Post List</body></html>')
     # posts변수에 DRM을 이용해서 전체 Post의 리스트(쿼리셋)을 대입
-    posts = Post.objects.all()
+    # posts = Post.objects.all()
+
+    # posts변수에 전체 Post를 최신 내림차순으로 정렬한 쿼리셋을 대입
+    posts = Post.objects.order_by('-created_date')
 
     # posts변수에 DRM을 사용해서 전달할 쿼리셋이
     # Post의 published_date가 timezone.now()보다
@@ -32,7 +39,19 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', context)
 
 def post_create(request):
-    context = {
+    if request.method == 'GET':
+        context = {
 
-    }
-    return render(request, 'blog/post_create.html', context)
+        }
+        return render(request, 'blog/post_create.html', context)
+    elif request.method == 'POST':
+        data = request.POST
+        title = data['title']
+        text = data['text']
+        user = User.objects.first()
+        post = Post.objects.create(
+            title=title,
+            text=text,
+            author=user,
+        )
+        return redirect('post_detail', pk=post.pk)

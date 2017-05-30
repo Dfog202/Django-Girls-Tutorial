@@ -1,14 +1,10 @@
-blog/base.html을 확장
-
-제목(input type text)
-내용(textarea)
-작성버튼(button)성
-을 갖는 html을 성작성
-
 {% extends 'blog/base.html' %}
-    <form action="" method="POST">
-        <input type="text">
-        <textarea name="" id="" cols="30" rows="10"></textarea>
+
+{% block content %}
+    <form action="/post/create/" method="POST">
+        {% csrf_token %}
+        <input name="title" type="text" >
+        <textarea name="text" id="" cols="30" rows="10"></textarea>
         <button type="submit">작성</button>
     </form>
 {% endblock %}
