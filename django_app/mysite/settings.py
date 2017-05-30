@@ -131,5 +131,5 @@ STATIC_URL = '/static/'
 
 # 이 리스트(또는 튜플)의 경로는 STATIC_URL로 요청된 파일을 찾는 폴더로 사용됨
 STATICFILES_DIRS = (
-    STATIC_DIR
+    STATIC_DIR,
 )

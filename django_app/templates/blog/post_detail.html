@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Djnago Girls blog</title>
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{% static 'bootstrap/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 	<div class="container">
@@ -16,14 +16,15 @@
  			<h1><a href="#">Django Girls Blog</a></h1>
  			<h4>{{ title }}</h4>
  		</div>
+
         <div class="post-list">
-            {% for post in posts %}
+
             <div class="post">
                 <h4><a href="#">{{ post.title }}</a></h4>
                 <p class="text-right"><small>published: {{ post.published_date }}</small></p>
                 <p>{{ post.text|truncatechars:150 }}</p>
             </div>
-            {% endfor %}
+
         </div>
     </div>
 </body>
