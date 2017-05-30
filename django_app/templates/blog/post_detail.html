@@ -3,7 +3,7 @@
 {% block content %}
 <div class="post-list">
     <div class="post">
-        <h4><a href="#">{{ post.title }}</a></h4>
+        <h4><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h4>
         <p class="text-right"><small>published: {{ post.published_date }}</small></p>
         <p>{{ post.text|truncatechars:150 }}</p>
     </div>
